@@ -1,0 +1,29 @@
+/* TRUST */
+.trustWrap{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.trustCard{
+  background:#fbfbfe;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.trustGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.trustItem{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  font-size:13px;
+  color:var(--muted);
+}
+.checkList{margin:10px 0 0;padding-left:18px;color:var(--muted);line-height:1.9}

@@ -1,0 +1,30 @@
+/* NAVBAR */
+.topbar{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:50;
+  padding:16px 0;
+}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brandMark{
+  width:50px;height:50px;border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;font-weight:900;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  padding:6px;
+}
+.brandLabel{font-size:13px;line-height:1.1;text-align:center}
+.brandSubLabel{font-size:8px;line-height:1;opacity:0.95}
+.menu{display:flex;gap:30px;flex-wrap:nowrap;align-items:center}
+.menu a{color:var(--muted);font-weight:600;font-size:14px;transition:color 0.2s}
+.menu a:hover{color:var(--primary)}
+.navActions{display:flex;gap:10px;align-items:center}

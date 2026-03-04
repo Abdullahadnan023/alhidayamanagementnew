@@ -1,0 +1,32 @@
+/* LOCATION */
+.locationWrap{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  align-items:start;
+}
+.addressCard{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+.addressCard p{color:var(--muted);line-height:1.7}
+
+/* MAP (small) */
+.mapContainer{
+  width:100%;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:8px;
+}
+.mapContainer iframe{
+  width:100%;
+  height:120px;
+  border:0;
+  border-radius:12px;
+}
