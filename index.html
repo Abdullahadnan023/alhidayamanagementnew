@@ -24,111 +24,166 @@
 
 <body>
 
-<!-- <div id="navbar-container"></div> -->
+  
 
-<div id="hero-container"></div>
+  <div id="hero-container"></div>
+  <div id="services-container"></div>
+  <div id="jobs-container"></div>
+  <div id="process-container"></div>
+  <div id="partner-container"></div>
+  <div id="apply-container"></div>
+  <div id="featured-container"></div>
+  <div id="testimonials-new-container"></div>
+  <div id="newsletter-container"></div>
+  <div id="trust-container"></div>
+  <div id="location-container"></div>
+  <div id="vision-container"></div>
+  <div id="mission-container"></div>
+  <div id="footer-container"></div>
 
-<div id="services-container"></div>
+  <a class="floatBtn wa" target="_blank"
+     href="https://wa.me/918853979030?text=Hello%20AL%20HIDAYA%20MANAGEMENT%2C%20I%20want%20to%20apply%20for%20a%20job."
+     title="WhatsApp">WA</a>
+  <a class="floatBtn call" href="tel:+918853979030" title="Call">Call</a>
 
-<div id="jobs-container"></div>
+  <script src="js/script.js"></script>
+  <script>
 
-<div id="process-container"></div>
+    // ── NAVBAR (load first, then renderNav) ──
+    fetch('navbar.html')
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById('navbar-container').innerHTML = html;
+    renderNav();
+  })
+  .catch(e => console.error('Error loading navbar:', e));
+    function renderNav() {
+      const user = JSON.parse(localStorage.getItem('user') || 'null');
+      const nav = document.getElementById('navActions');
+      if (!nav) return;
+      if (user) {
+        nav.innerHTML = `
+          <span style="font-size:13px;font-weight:700;color:#1e1b4b;">👤 ${user.name}</span>
+          ${user.role === 'admin' ? '<a class="btn ghost" href="admin.html">Admin Panel</a>' : ''}
+          <button class="btn ghost" onclick="handleLogout()">Logout</button>
+          <a class="btn primary" href="#apply">Apply Now</a>
+        `;
+      } else {
+        nav.innerHTML = `
+          <a class="btn ghost" href="login.html">Login</a>
+          <a class="btn primary" href="signup.html">Sign Up</a>
+          <a class="btn primary" href="#apply">Apply Now</a>
+        `;
+      }
+    }
 
-<div id="partner-container"></div>
+    function handleLogout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.reload();
+    }
 
-<div id="apply-container"></div>
+    // ── OTHER SECTIONS ──
+    fetch('hero.html')
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById('hero-container');
+        container.innerHTML = html;
+        container.querySelectorAll('script').forEach(oldScript => {
+          const newScript = document.createElement('script');
+          newScript.textContent = oldScript.textContent;
+          document.body.appendChild(newScript);
+        });
+      })
+      .catch(error => console.error('Error loading hero:', error));
 
-<div id="featured-container"></div>
+    fetch('services.html')
+      .then(res => res.text())
+      .then(html => {
+        var c = document.getElementById('services-container');
+        c.innerHTML = html;
+        c.querySelectorAll('script').forEach(function(s) {
+          var n = document.createElement('script');
+          n.textContent = s.textContent;
+          document.body.appendChild(n);
+        });
+      })
+      .catch(error => console.error('Error loading services:', error));
 
-<div id="testimonials-new-container"></div>
+    fetch('jobs.html')
+      .then(res => res.text())
+      .then(html => {
+        const c = document.getElementById('jobs-container');
+        c.innerHTML = html;
+        c.querySelectorAll('script').forEach(s => {
+          const n = document.createElement('script');
+          n.textContent = s.textContent;
+          document.body.appendChild(n);
+        });
+      })
+      .catch(error => console.error('Error loading jobs:', error));
 
-<div id="newsletter-container"></div>
+    fetch('process.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('process-container').innerHTML = html)
+      .catch(error => console.error('Error loading process:', error));
 
-<div id="trust-container"></div>
+    fetch('partner.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('partner-container').innerHTML = html)
+      .catch(error => console.error('Error loading partner:', error));
 
-<div id="testimonials-container"></div>
+    fetch('featured.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('featured-container').innerHTML = html)
+      .catch(error => console.error('Error loading featured:', error));
 
-<div id="location-container"></div>
+    fetch('testimonials-new.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('testimonials-new-container').innerHTML = html)
+      .catch(error => console.error('Error loading testimonials-new:', error));
 
-<div id="footer-container"></div>
+    fetch('newsletter.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('newsletter-container').innerHTML = html)
+      .catch(error => console.error('Error loading newsletter:', error));
 
-<a class="floatBtn wa" target="_blank"
-   href="https://wa.me/918853979030?text=Hello%20AL%20HIDAYA%20MANAGEMENT%2C%20I%20want%20to%20apply%20for%20a%20job."
-   title="WhatsApp">WA</a>
-<a class="floatBtn call" href="tel:+918853979030" title="Call">Call</a>
+    fetch('trust.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('trust-container').innerHTML = html)
+      .catch(error => console.error('Error loading trust:', error));
 
-<script src="js/script.js"></script>
-<script>
-  // Load sections
-  fetch('navbar.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('navbar-container').innerHTML = html)
-    .catch(error => console.error('Error loading navbar:', error));
+    fetch('apply.html')
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById('apply-container');
+        container.innerHTML = html;
+        const script = document.createElement('script');
+        script.textContent = container.querySelector('script').textContent;
+        document.body.appendChild(script);
+      })
+      .catch(error => console.error('Error loading apply:', error));
 
-  fetch('hero.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('hero-container').innerHTML = html)
-    .catch(error => console.error('Error loading hero:', error));
+    fetch('location.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('location-container').innerHTML = html)
+      .catch(error => console.error('Error loading location:', error));
 
-  fetch('services.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('services-container').innerHTML = html)
-    .catch(error => console.error('Error loading services:', error));
+    fetch('mission.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('mission-container').innerHTML = html)
+    .catch(error => console.error('Error loading mission:', error));
 
-  fetch('jobs.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('jobs-container').innerHTML = html)
-    .catch(error => console.error('Error loading jobs:', error));
-
-  fetch('process.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('process-container').innerHTML = html)
-    .catch(error => console.error('Error loading process:', error));
-
-  fetch('partner.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('partner-container').innerHTML = html)
-    .catch(error => console.error('Error loading partner:', error));
-
-  fetch('featured.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('featured-container').innerHTML = html)
-    .catch(error => console.error('Error loading featured:', error));
-
-  fetch('testimonials-new.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('testimonials-new-container').innerHTML = html)
-    .catch(error => console.error('Error loading testimonials-new:', error));
-
-  fetch('newsletter.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('newsletter-container').innerHTML = html)
-    .catch(error => console.error('Error loading newsletter:', error));
-
-  fetch('trust.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('trust-container').innerHTML = html)
-    .catch(error => console.error('Error loading trust:', error));
-
-  fetch('testimonials.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('testimonials-container').innerHTML = html)
-    .catch(error => console.error('Error loading testimonials:', error));
-
-  fetch('apply.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('apply-container').innerHTML = html)
-    .catch(error => console.error('Error loading apply:', error));
-
-  fetch('location.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('location-container').innerHTML = html)
-    .catch(error => console.error('Error loading location:', error));
+  fetch('vision.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('vision-container').innerHTML = html)
+    .catch(error => console.error('Error loading vision:', error));
 
   fetch('footer.html')
-    .then(response => response.text())
-    .then(html => document.getElementById('footer-container').innerHTML = html)
-    .catch(error => console.error('Error loading footer:', error));
-</script>
+      .then(res => res.text())
+      .then(html => document.getElementById('footer-container').innerHTML = html)
+      .catch(error => console.error('Error loading footer:', error));
+
+  </script>
 </body>
 </html>

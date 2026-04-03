@@ -1,3 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Process Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --primary: #4f46e5; --primary2: #7c3aed; --muted: #64748b; --line: #e2e8f0; }
+body { font-family: 'DM Sans', sans-serif; background: #f8f9ff; color: #1e1b4b; }
+
+.section {
+  padding: 80px 60px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.section::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sectionHead {
+  max-width: 1100px; margin: 0 auto;
+  text-align: center;
+  margin-bottom: 56px;
+}
+.sectionHead h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 36px; font-weight: 900;
+  color: #1e1b4b; letter-spacing: -0.8px; margin-bottom: 10px;
+}
+.sectionHead p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+/* ── PROCESS GRID ── */
+.processGrid {
+  max-width: 1100px; margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+
+/* ── STEP ── */
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 24px;
+  animation: stepIn 0.5s ease both;
+}
+.step:nth-child(1) { animation-delay: 0.05s; }
+.step:nth-child(2) { animation-delay: 0.12s; }
+.step:nth-child(3) { animation-delay: 0.19s; }
+.step:nth-child(4) { animation-delay: 0.26s; }
+.step:nth-child(5) { animation-delay: 0.33s; }
+.step:nth-child(6) { animation-delay: 0.40s; }
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* connector line */
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: calc(50% + 44px);
+  right: calc(-50% + 44px);
+  height: 2px;
+  background: linear-gradient(90deg, #a5b4fc, #c7d2fe);
+  z-index: 0;
+}
+
+/* arrow head on each step except first */
+.step:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 27px;
+  left: 0px;
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 10px solid #a5b4fc;
+  z-index: 1;
+}
+
+/* circle badge */
+.step span {
+  position: relative; z-index: 1;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 900; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(79,70,229,0.28), 0 0 0 6px rgba(79,70,229,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+.step:hover span {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 14px 32px rgba(79,70,229,0.36), 0 0 0 10px rgba(79,70,229,0.1);
+}
+.step span::before {
+  content: '';
+  position: absolute;
+  inset: -8px; border-radius: 50%;
+  border: 2px solid rgba(79,70,229,0.2);
+  opacity: 0; transition: opacity 0.25s;
+}
+.step:hover span::before { opacity: 1; }
+
+/* text */
+.stepText { margin-top: 18px; padding: 8px; }
+.step:hover .stepText {
+  background: none;
+  box-shadow: none;
+}
+.step b {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px; font-weight: 800;
+  color: #1e1b4b; margin-bottom: 6px; line-height: 1.3;
+}
+.step p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 12px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .section { padding: 60px 24px; }
+  .processGrid { flex-direction: column; align-items: center; gap: 0; }
+  .step {
+    flex-direction: row; text-align: left;
+    width: 100%; max-width: 400px;
+    padding: 0 0 40px 0; gap: 18px; align-items: flex-start;
+  }
+  .step:not(:last-child)::after {
+    top: 72px; left: 35px; right: auto;
+    width: 2px; height: calc(100% - 8px);
+    background: linear-gradient(180deg, #a5b4fc, #c7d2fe);
+  }
+  .step:not(:first-child)::before {
+    top: 0; left: 27px;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 10px solid #a5b4fc;
+    border-top: none;
+  }
+  .stepText { margin-top: 14px; }
+  .step:hover .stepText { padding: 0; background: none; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
 <section class="section" id="process">
   <div class="container sectionHead">
     <div>
@@ -5,13 +171,33 @@
       <p>Clear step-by-step process for a professional experience.</p>
     </div>
   </div>
-
   <div class="container processGrid">
-    <div class="step"><span>1</span><b>CV Shortlisting</b><p>Profile check as per job requirement.</p></div>
-    <div class="step"><span>2</span><b>Interview Scheduling</b><p>Interview / trade test coordination.</p></div>
-    <div class="step"><span>3</span><b>Company Selection</b><p>Final selection strictly by company.</p></div>
-    <div class="step"><span>4</span><b>Visa Documentation</b><p>Document verification and submission.</p></div>
-    <div class="step"><span>5</span><b>Medical & Ticket</b><p>Medical and travel guidance support.</p></div>
-    <div class="step"><span>6</span><b>Deployment</b><p>Final deployment and follow-up support.</p></div>
+    <div class="step">
+      <span>1</span>
+      <div class="stepText"><b>CV Shortlisting</b><p>Profile check as per job requirement.</p></div>
+    </div>
+    <div class="step">
+      <span>2</span>
+      <div class="stepText"><b>Interview Scheduling</b><p>Interview / trade test coordination.</p></div>
+    </div>
+    <div class="step">
+      <span>3</span>
+      <div class="stepText"><b>Company Selection</b><p>Final selection strictly by company.</p></div>
+    </div>
+    <div class="step">
+      <span>4</span>
+      <div class="stepText"><b>Visa Documentation</b><p>Document verification and submission.</p></div>
+    </div>
+    <div class="step">
+      <span>5</span>
+      <div class="stepText"><b>Medical & Ticket</b><p>Medical and travel guidance support.</p></div>
+    </div>
+    <div class="step">
+      <span>6</span>
+      <div class="stepText"><b>Deployment</b><p>Final deployment and follow-up support.</p></div>
+    </div>
   </div>
 </section>
+
+</body>
+</html>

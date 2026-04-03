@@ -1,5 +1,6 @@
 <header class="topbar">
   <div class="container nav">
+
     <div class="brand">
       <div class="brandMark">
         <span class="brandLabel">AL HIDAYA</span>
@@ -15,8 +16,36 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <div class="navActions">
-      <a class="btn primary" href="#apply">Apply Now</a>
-    </div>
+    <div class="navActions" id="navActions"></div>
+
   </div>
 </header>
+
+<script>
+  function renderNav() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    const nav = document.getElementById('navActions');
+    if (user) {
+      nav.innerHTML = `
+        <span class="navUser">👤 ${user.name}</span>
+        ${user.role === 'admin' ? '<a class="btn ghost" href="admin.html">Admin Panel</a>' : ''}
+        <button class="btn ghost" onclick="handleLogout()">Logout</button>
+        <a class="btn primary" href="#apply">Apply Now</a>
+      `;
+    } else {
+      nav.innerHTML = `
+        <a class="btn ghost" href="login.html">Login</a>
+        <a class="btn primary" href="signup.html">Sign Up</a>
+        <a class="btn primary" href="#apply">Apply Now</a>
+      `;
+    }
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.reload();
+  }
+
+  renderNav();
+</script>

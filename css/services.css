@@ -2,7 +2,12 @@
    STATS STRIP (Like Image)
    ========================= */
 .statsStripSection{
-  padding: 10px 0 20px;
+  padding: 70px 60px 80px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f6ff 60%, #ede9fe 100%);
+  overflow: hidden;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .statsStrip{
@@ -15,6 +20,8 @@
   gap:20px;
   align-items:center;
   box-shadow:0 10px 26px rgba(0,0,0,0.06);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .statsItem{

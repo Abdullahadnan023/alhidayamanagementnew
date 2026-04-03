@@ -2,31 +2,27 @@
 <section class="statsStripSection" id="stats">
   <div class="container">
     <div class="statsStrip">
-      
       <div class="statsItem">
         <span class="statsIcon bg-blue">💼</span>
         <div class="statsText">
-          <div class="statsNum">8k+</div>
+          <div class="statsNum" id="statJobs">...</div>
           <div class="statsLabel">Current Jobs</div>
         </div>
       </div>
-
       <div class="statsItem">
         <span class="statsIcon bg-orange">🏢</span>
         <div class="statsText">
-          <div class="statsNum">400+</div>
+          <div class="statsNum">45+</div>
           <div class="statsLabel">Companies</div>
         </div>
       </div>
-
       <div class="statsItem">
         <span class="statsIcon bg-purple">👥</span>
         <div class="statsText">
-          <div class="statsNum">20k+</div>
+          <div class="statsNum" id="statApps">...</div>
           <div class="statsLabel">Talent Pool</div>
         </div>
       </div>
-
       <div class="statsItem">
         <span class="statsIcon bg-green">✅</span>
         <div class="statsText">
@@ -34,7 +30,23 @@
           <div class="statsLabel">Success Rate</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+<script>
+async function loadServicesStats() {
+  try {
+    var jobsRes = await fetch('http://localhost:5000/api/jobs');
+    var jobsData = await jobsRes.json();
+    var activeJobs = (jobsData.jobs || []).filter(function(j){ return j.isActive; }).length;
+    var appsRes = await fetch('http://localhost:5000/api/applications/count');
+    var appsData = await appsRes.json();
+    var totalApps = (appsData.count || 0) + 50;
+    var j = document.getElementById('statJobs');
+    var a = document.getElementById('statApps');
+    if(j) j.textContent = activeJobs + '+';
+    if(a) a.textContent = totalApps + '+';
+  } catch(e){ console.log(e); }
+}
+loadServicesStats();
+</script>

@@ -2,9 +2,17 @@
    NEWSLETTER SUBSCRIPTION
    ========================= */
 .newsletterSec{
-  padding: 70px 0 90px;
+  padding: 70px 60px 90px;
   background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
   border-top: 1px solid #e5e7eb;
+  overflow: hidden;
+  position: relative;
+}
+
+.newsletterSec > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .newsletterContent{

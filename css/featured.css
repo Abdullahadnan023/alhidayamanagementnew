@@ -2,8 +2,16 @@
    FEATURED OPPORTUNITIES
    ========================= */
 .featSec{
-  padding: 70px 0 90px;
+  padding: 70px 60px 90px;
   background:#ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.featSec > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .featTop{

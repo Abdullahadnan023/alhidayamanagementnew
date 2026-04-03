@@ -1,7 +1,15 @@
 /* ===== JOB CATEGORY SECTION (Exact Layout) ===== */
 .jobCatSec{
-  padding: 70px 0;
+  padding: 70px 60px 90px;
   background:#f6f8ff; /* light page bg like screenshot */
+  overflow: hidden;
+  position: relative;
+}
+
+.jobCatSec > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .jobCatTop{
@@ -98,3 +106,21 @@
   .jobCatTop{flex-direction:column;}
   .jobCatGrid2{grid-template-columns:1fr;}
 }
+/* ===== LIVE JOBS SECTION ===== */
+.liveJobsSec { padding: 60px 60px 80px; background: #fff; }
+.liveJobsSec > .container { max-width: 1200px; margin: 0 auto; }
+.liveJobsGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.liveJobCard { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 10px 22px rgba(0,0,0,0.06); border: 1px solid #eef0f6; display: flex; flex-direction: column; gap: 8px; transition: transform .2s, box-shadow .2s; }
+.liveJobCard:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(79,70,229,0.12); }
+.liveJobTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.liveJobType { font-size: 11px; font-weight: 700; background: #eef0ff; color: #4f46e5; padding: 4px 10px; border-radius: 20px; }
+.liveJobTitle { font-size: 16px; font-weight: 800; color: #111827; margin: 0; }
+.liveJobCompany, .liveJobLocation, .liveJobSalary { font-size: 13px; color: #6b7280; font-weight: 500; margin: 0; }
+.liveJobDesc { font-size: 12px; color: #9ca3af; line-height: 1.6; margin: 4px 0; }
+.liveJobFooter { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid #eef0f6; }
+.liveJobDate { font-size: 11px; color: #9ca3af; font-weight: 500; }
+.liveJobApplyBtn { background: #4f46e5; color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; }
+.liveJobApplyBtn:hover { opacity: .85; }
+.jobLoadingCard, .jobEmptyCard { grid-column: 1/-1; text-align: center; padding: 40px; color: #9ca3af; font-size: 14px; }
+@media (max-width: 1000px) { .liveJobsGrid { grid-template-columns: repeat(2, 1fr); } .liveJobsSec { padding: 40px 24px; } }
+@media (max-width: 600px) { .liveJobsGrid { grid-template-columns: 1fr; } }

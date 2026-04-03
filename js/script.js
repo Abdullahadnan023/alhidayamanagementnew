@@ -28,8 +28,8 @@ function toggleExperience() {
   }
 }
 
-statusEl.addEventListener("change", toggleExperience);
-toggleExperience();
+if(statusEl) statusEl.addEventListener("change", toggleExperience);
+if(statusEl) toggleExperience();
 
 /* --- Validation: must match datalist options --- */
 function isValidFromDatalist(inputEl, datalistEl) {
@@ -56,10 +56,10 @@ function clearInlineError(inputEl) {
   if (old) old.remove();
 }
 
-countryInput.addEventListener("input", () => clearInlineError(countryInput));
-jobInput.addEventListener("input", () => clearInlineError(jobInput));
+if(countryInput) countryInput.addEventListener("input", () => clearInlineError(countryInput));
+if(jobInput) jobInput.addEventListener("input", () => clearInlineError(jobInput));
 
-document.getElementById("applyForm").addEventListener("submit", (e) => {
+if(document.getElementById("applyForm")) document.getElementById("applyForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const okCountry = isValidFromDatalist(countryInput, countryList);

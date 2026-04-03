@@ -5,13 +5,23 @@
   background:#1f2937;
   color:#e5e7eb;
   border-top:1px solid #374151;
+  padding: 70px 60px 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.footer > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .footerContent{
   display:grid;
   grid-template-columns: 1.5fr 2fr;
   gap:60px;
-  padding:60px 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Brand Section */

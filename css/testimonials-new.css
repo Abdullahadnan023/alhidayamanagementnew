@@ -2,9 +2,17 @@
    TESTIMONIALS / WHAT OUR CANDIDATES SAY
    ========================= */
 .testiSec{
-  padding: 70px 0 90px;
+  padding: 70px 60px 90px;
   background: #ffffff;
   border-top: 1px solid #eef0f6;
+  overflow: hidden;
+  position: relative;
+}
+
+.testiSec > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .testiHead{
